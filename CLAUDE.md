@@ -26,16 +26,7 @@
 - 测试用 vitest：core 为 node 环境（无头 Editor），react 为 jsdom + `@testing-library/react`
 - 浏览器行为验证使用 kimi-webbridge（真实浏览器，非无头）
 
-## 4. 目录规则
-
-- `packages/core/src` — `model/`（Doc 模型）、`steps/`（Step 实现）、`state/`（EditorState）、`transform/`（Transaction）、`plugins/`（history/keymap）、`editor.ts`（主类）；`render/`（FabricRenderer、controllers、exporter）为内部实现，不导出
-- `packages/react/src` — 组件（`*.tsx`）与 hooks；样式 Tailwind（`fp-` 前缀，preflight 关闭），产物 `dist/style.css` 需显式 import
-- `packages/core/playground` — core 独立调试页（无 React），`pnpm --filter @gmi/fp-core dev`，端口 9877
-- `demo/` — 演示站源码；dev/build 前经 `pre*` 钩子自动先构建 `@gmi/*` 包
-- `dist/`、`dist-demo/`、各包 `dist/` 均为构建产物，不要手改
-- `scripts/ralph/` — 自主编码 agent 工作流，自带 CLAUDE.md，独立维护
-
-## 5. 开发入口
+## 4. 开发入口
 
 - 安装依赖：`pnpm install`
 - 本地开发（demo，端口 9876）：`pnpm dev`
@@ -44,13 +35,15 @@
 - 测试：`pnpm test`；类型检查：`pnpm typecheck`
 - core playground：`pnpm --filter @gmi/fp-core dev`（端口 9877）
 
-## 6. 新增功能约定
+## 5. 局部规则导航
 
-- 新编辑操作 → 新 Step：`apply`/`invert` 成对实现，附单测（core node 环境无头 Editor 即可测全语义）
-- 新交互模式 → 新 controller：实现 `render/controllers/controller.ts` 的 Controller 接口，在 `Editor` 构造中注册，并挂到对应 mode
-- 新 UI → react 组件：hooks 订阅 state/事件（`useEditorState`/`useEditorEvent`），不写任何编辑逻辑
-- 新公开 API → 同步更新 `packages/core/README.md` 或 `packages/react/README.md` 的 API 清单
+- `packages/core/CLAUDE.md` — 内核目录规则（Step/controller 约定、fabric 封装、无头模式）
+- `packages/react/CLAUDE.md` — React 包目录规则（零编辑逻辑、公开 API 边界、样式约定）
+- `.claude/rules/testing.md` — 测试文件规则（编辑 `*.test.ts(x)` 时按需加载）
+- `.claude/rules/generated-dist.md` — 构建产物规则（始终加载）
+- `.catpaw/rules/` — 以上规则的 CatPaw IDE 镜像，同名文件正文与 `.claude` 体系保持一致
+- `scripts/ralph/` — 自主编码 agent 工作流，自带 CLAUDE.md，独立维护
 
-## 7. 遗留
+## 6. 遗留
 
 - 旧 fabric-photo（单包、fabric 1.7.3、「模块 + 命令」架构）已随 Phase 3 删除，历史见 git
