@@ -1,0 +1,22 @@
+export const VERSION = '0.1.0';
+
+export { FabricPhotoEditor } from './editor';
+export type { FabricPhotoEditorProps } from './editor';
+export { CanvasView } from './canvas-view';
+export type { CanvasViewProps } from './canvas-view';
+export { EditorProvider } from './provider';
+export type { EditorProviderProps } from './provider';
+export { useEditor, useEditorState, useEditorEvent, useToolSettings } from './hooks';
+export { DEFAULT_TOOL_SETTINGS, modeToTool, activateTool, applyColor } from './tool-settings';
+export { useShortcuts, TOOL_SHORTCUTS } from './shortcuts';
+export type { ToolId, ToolSettings } from './tool-settings';
+export { ColorPalette, PALETTE_COLORS } from './color-palette';
+export type { ColorPaletteProps } from './color-palette';
+export { Toolbar, TOOLS } from './toolbar';
+export type { ToolDef } from './toolbar';
+export { ToolOptionBar } from './tool-option-bar';
+export { TopBar } from './top-bar';
+export { PropertiesPanel } from './properties-panel';
+export { LayersPanel } from './layers-panel';
+export type { LayersPanelProps } from './layers-panel';
+export type { EditorUIState } from './context';
